@@ -1,5 +1,7 @@
 package nl.hogeschoolutrecht;
 
+import nl.hogeschoolutrecht.iterator.BrowseHistory;
+import nl.hogeschoolutrecht.iterator.Iterator;
 import nl.hogeschoolutrecht.momento.Editor;
 import nl.hogeschoolutrecht.momento.History;
 import nl.hogeschoolutrecht.state.BrushTool;
@@ -15,6 +17,10 @@ public class Main {
 
         System.out.println("State Pattern \n----------------------------");
         getStatePattern();
+        System.out.println("----------------------------\n");
+
+        System.out.println("Iterator Pattern \n----------------------------");
+        getIteratorPattern();
         System.out.println("----------------------------\n");
     }
 
@@ -45,5 +51,22 @@ public class Main {
         canvas.setCurrentTool(new BrushTool());
         canvas.mouseDown();
         canvas.mouseUp();
+    }
+
+    public static void getIteratorPattern()
+    {
+        BrowseHistory browseHistory = new BrowseHistory();
+        browseHistory.push("google.nl");
+        browseHistory.push("vraagstudent.nl");
+        browseHistory.push("github.com");
+
+        Iterator iterator = browseHistory.createIterator();
+        browseHistory.pop();
+
+        while (iterator.hasNext())
+        {
+            System.out.println(iterator.current());
+            iterator.next();
+        }
     }
 }
