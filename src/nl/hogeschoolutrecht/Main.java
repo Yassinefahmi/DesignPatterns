@@ -7,6 +7,9 @@ import nl.hogeschoolutrecht.momento.History;
 import nl.hogeschoolutrecht.state.BrushTool;
 import nl.hogeschoolutrecht.state.Canvas;
 import nl.hogeschoolutrecht.state.SelectionTool;
+import nl.hogeschoolutrecht.strategy.BlackAndWhiteFilter;
+import nl.hogeschoolutrecht.strategy.ImageStorage;
+import nl.hogeschoolutrecht.strategy.PNGCompressor;
 
 public class Main {
 
@@ -21,6 +24,10 @@ public class Main {
 
         System.out.println("Iterator Pattern \n----------------------------");
         getIteratorPattern();
+        System.out.println("----------------------------\n");
+
+        System.out.println("Strategy Pattern \n----------------------------");
+        getStrategyPattern();
         System.out.println("----------------------------\n");
     }
 
@@ -68,5 +75,11 @@ public class Main {
             System.out.println(iterator.current());
             iterator.next();
         }
+    }
+
+    public static void getStrategyPattern()
+    {
+        ImageStorage imageStorage = new ImageStorage();
+        imageStorage.store("avatar.jpeg", new PNGCompressor(), new BlackAndWhiteFilter());
     }
 }
