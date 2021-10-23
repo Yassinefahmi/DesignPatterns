@@ -10,6 +10,8 @@ import nl.hogeschoolutrecht.state.SelectionTool;
 import nl.hogeschoolutrecht.strategy.BlackAndWhiteFilter;
 import nl.hogeschoolutrecht.strategy.ImageStorage;
 import nl.hogeschoolutrecht.strategy.PNGCompressor;
+import nl.hogeschoolutrecht.template.Task;
+import nl.hogeschoolutrecht.template.TransferMoneyTask;
 
 public class Main {
 
@@ -29,9 +31,13 @@ public class Main {
         System.out.println("Strategy Pattern \n----------------------------");
         getStrategyPattern();
         System.out.println("----------------------------\n");
+
+        System.out.println("Template Method Pattern \n----------------------------");
+        getTemplateMethodPattern();
+        System.out.println("----------------------------\n");
     }
 
-    public static void getMomentoPattern()
+    private static void getMomentoPattern()
     {
         Editor editor = new Editor();
         History history = new History();
@@ -47,7 +53,7 @@ public class Main {
         System.out.println("Go back to state 1: " + editor.getContent());
     }
 
-    public static void getStatePattern()
+    private static void getStatePattern()
     {
         Canvas canvas = new Canvas();
 
@@ -60,7 +66,7 @@ public class Main {
         canvas.mouseUp();
     }
 
-    public static void getIteratorPattern()
+    private static void getIteratorPattern()
     {
         BrowseHistory browseHistory = new BrowseHistory();
         browseHistory.push("google.nl");
@@ -77,9 +83,15 @@ public class Main {
         }
     }
 
-    public static void getStrategyPattern()
+    private static void getStrategyPattern()
     {
         ImageStorage imageStorage = new ImageStorage();
         imageStorage.store("avatar.jpeg", new PNGCompressor(), new BlackAndWhiteFilter());
+    }
+
+    private static void getTemplateMethodPattern()
+    {
+        Task task = new TransferMoneyTask();
+        task.execute();
     }
 }
