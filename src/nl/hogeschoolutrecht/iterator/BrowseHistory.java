@@ -8,7 +8,7 @@ public class BrowseHistory
 
     public BrowseHistory()
     {
-        this.urls = new String[10];
+        urls = new String[10];
     }
 
     public void push(String url)
@@ -16,9 +16,8 @@ public class BrowseHistory
         this.urls[count++] = url;
     }
 
-    public String pop()
-    {
-        return this.urls[--count];
+    public String pop() {
+        return urls[--count];
     }
 
     public Iterator createIterator()
@@ -26,7 +25,7 @@ public class BrowseHistory
         return new ArrayIterator(this);
     }
 
-    public class ArrayIterator implements Iterator
+    public static class ArrayIterator implements Iterator
     {
         private final BrowseHistory browseHistory;
         private int index;

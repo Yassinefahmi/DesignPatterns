@@ -1,9 +1,10 @@
 package nl.hogeschoolutrecht;
 
+import nl.hogeschoolutrecht.command.editor.*;
 import nl.hogeschoolutrecht.iterator.BrowseHistory;
 import nl.hogeschoolutrecht.iterator.Iterator;
 import nl.hogeschoolutrecht.momento.Editor;
-import nl.hogeschoolutrecht.momento.History;
+import nl.hogeschoolutrecht.momento.EditorHistory;
 import nl.hogeschoolutrecht.state.BrushTool;
 import nl.hogeschoolutrecht.state.Canvas;
 import nl.hogeschoolutrecht.state.SelectionTool;
@@ -35,12 +36,16 @@ public class Main {
         System.out.println("Template Method Pattern \n----------------------------");
         getTemplateMethodPattern();
         System.out.println("----------------------------\n");
+
+        System.out.println("Command Pattern \n----------------------------");
+        getCommandPattern();
+        System.out.println("----------------------------\n");
     }
 
     private static void getMomentoPattern()
     {
         Editor editor = new Editor();
-        History history = new History();
+        EditorHistory history = new EditorHistory();
 
         editor.setContent("Eerste stukje tekst.");
         history.push(editor.createState());
@@ -74,7 +79,7 @@ public class Main {
         browseHistory.push("github.com");
 
         Iterator iterator = browseHistory.createIterator();
-        browseHistory.pop();
+        System.out.println("Removed " + browseHistory.pop());
 
         while (iterator.hasNext())
         {
@@ -93,5 +98,21 @@ public class Main {
     {
         Task task = new TransferMoneyTask();
         task.execute();
+    }
+
+    private static void getCommandPattern()
+    {
+        CommandHistory commandHistory = new CommandHistory();
+        HtmlDocument htmlDocument = new HtmlDocument();
+        htmlDocument.setContent("Hello World");
+
+        UndoableCommand boldCommand = new BoldCommand(htmlDocument, commandHistory);
+
+        boldCommand.execute();
+        System.out.println(htmlDocument.getContent());
+
+        UndoCommand undoCommand = new UndoCommand(commandHistory);
+        undoCommand.execute();
+        System.out.println(htmlDocument.getContent());
     }
 }

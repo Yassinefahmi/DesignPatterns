@@ -6,12 +6,12 @@ public class Editor
 
     public EditorState createState()
     {
-        return new EditorState(this.content);
+        return new EditorState(content);
     }
 
     public void restore(EditorState editorState)
     {
-        this.content = editorState.getContent();
+        content = editorState.getContent();
     }
 
     public String getContent()

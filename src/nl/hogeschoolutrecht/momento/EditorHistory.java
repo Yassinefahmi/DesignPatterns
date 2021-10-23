@@ -3,13 +3,13 @@ package nl.hogeschoolutrecht.momento;
 import java.util.ArrayList;
 import java.util.List;
 
-public class History
+public class EditorHistory
 {
-    private List<EditorState> editorStates;
+    private final List<EditorState> editorStates;
 
-    public History()
+    public EditorHistory()
     {
-        this.editorStates = new ArrayList<>();
+        editorStates = new ArrayList<>();
     }
 
     public void push(EditorState editorState)
@@ -19,10 +19,10 @@ public class History
 
     public EditorState pop()
     {
-        int lastIndex = this.editorStates.size() - 1;
+        int lastIndex = editorStates.size() - 1;
         EditorState lastEditorState = editorStates.get(lastIndex);
 
-        this.editorStates.remove(lastEditorState);
+        editorStates.remove(lastEditorState);
 
         return lastEditorState;
     }

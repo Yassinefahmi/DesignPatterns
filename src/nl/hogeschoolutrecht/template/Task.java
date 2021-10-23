@@ -6,7 +6,7 @@ public abstract class Task
 
     public Task()
     {
-        this.audit = new Audit();
+        audit = new Audit();
     }
 
     public Task(Audit audit)
