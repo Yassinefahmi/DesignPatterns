@@ -5,6 +5,9 @@ import nl.hogeschoolutrecht.iterator.BrowseHistory;
 import nl.hogeschoolutrecht.iterator.Iterator;
 import nl.hogeschoolutrecht.momento.Editor;
 import nl.hogeschoolutrecht.momento.EditorHistory;
+import nl.hogeschoolutrecht.observer.Chart;
+import nl.hogeschoolutrecht.observer.DataSource;
+import nl.hogeschoolutrecht.observer.Spreadsheet;
 import nl.hogeschoolutrecht.state.BrushTool;
 import nl.hogeschoolutrecht.state.Canvas;
 import nl.hogeschoolutrecht.state.SelectionTool;
@@ -39,6 +42,10 @@ public class Main {
 
         System.out.println("Command Pattern \n----------------------------");
         getCommandPattern();
+        System.out.println("----------------------------\n");
+
+        System.out.println("Observer Pattern \n----------------------------");
+        getObserverPattern();
         System.out.println("----------------------------\n");
     }
 
@@ -114,5 +121,19 @@ public class Main {
         UndoCommand undoCommand = new UndoCommand(commandHistory);
         undoCommand.execute();
         System.out.println(htmlDocument.getContent());
+    }
+
+    private static void getObserverPattern()
+    {
+        DataSource dataSource = new DataSource();
+        Spreadsheet spreadsheet1 = new Spreadsheet(dataSource);
+        Spreadsheet spreadsheet2 = new Spreadsheet(dataSource);
+        Chart chart = new Chart(dataSource);
+
+        dataSource.addObserver(spreadsheet1);
+        dataSource.addObserver(spreadsheet2);
+        dataSource.addObserver(chart);
+
+        dataSource.setValue(1);
     }
 }
