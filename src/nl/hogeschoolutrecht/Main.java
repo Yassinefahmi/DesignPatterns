@@ -1,5 +1,10 @@
 package nl.hogeschoolutrecht;
 
+import nl.hogeschoolutrecht.adapter.CaramelFilter;
+import nl.hogeschoolutrecht.adapter.Image;
+import nl.hogeschoolutrecht.adapter.ImageView;
+import nl.hogeschoolutrecht.adapter.VividFilter;
+import nl.hogeschoolutrecht.adapter.thirdParty.Caramel;
 import nl.hogeschoolutrecht.command.editor.*;
 import nl.hogeschoolutrecht.composite.Group;
 import nl.hogeschoolutrecht.composite.Shape;
@@ -57,6 +62,10 @@ public class Main {
 
         System.out.println("Composite Pattern \n----------------------------");
         getCompositePattern();
+        System.out.println("----------------------------\n");
+
+        System.out.println("Adapter Pattern \n----------------------------");
+        getAdapterPattern();
         System.out.println("----------------------------\n");
     }
 
@@ -171,5 +180,11 @@ public class Main {
         parentGroup.add(childGroup2);
         parentGroup.render();
         parentGroup.move();
+    }
+
+    private static void getAdapterPattern()
+    {
+        ImageView imageView = new ImageView(new Image());
+        imageView.apply(new CaramelFilter(new Caramel()));
     }
 }
