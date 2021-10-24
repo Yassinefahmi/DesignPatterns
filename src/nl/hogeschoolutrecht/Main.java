@@ -8,6 +8,10 @@ import nl.hogeschoolutrecht.adapter.thirdParty.Caramel;
 import nl.hogeschoolutrecht.command.editor.*;
 import nl.hogeschoolutrecht.composite.Group;
 import nl.hogeschoolutrecht.composite.Shape;
+import nl.hogeschoolutrecht.decorator.CloudStream;
+import nl.hogeschoolutrecht.decorator.CompressedCloudStream;
+import nl.hogeschoolutrecht.decorator.CreditCard;
+import nl.hogeschoolutrecht.decorator.EncryptedCloudStream;
 import nl.hogeschoolutrecht.iterator.BrowseHistory;
 import nl.hogeschoolutrecht.iterator.Iterator;
 import nl.hogeschoolutrecht.mediator.ArticleDialogBox;
@@ -66,6 +70,10 @@ public class Main {
 
         System.out.println("Adapter Pattern \n----------------------------");
         getAdapterPattern();
+        System.out.println("----------------------------\n");
+
+        System.out.println("Decorator Pattern \n----------------------------");
+        getDecoratorPattern();
         System.out.println("----------------------------\n");
     }
 
@@ -186,5 +194,11 @@ public class Main {
     {
         ImageView imageView = new ImageView(new Image());
         imageView.apply(new CaramelFilter(new Caramel()));
+    }
+
+    private static void getDecoratorPattern()
+    {
+        CreditCard creditCard = new CreditCard();
+        creditCard.store(new EncryptedCloudStream(new CompressedCloudStream(new CloudStream())));
     }
 }
