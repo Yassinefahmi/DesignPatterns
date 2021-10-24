@@ -1,6 +1,8 @@
 package nl.hogeschoolutrecht;
 
 import nl.hogeschoolutrecht.command.editor.*;
+import nl.hogeschoolutrecht.composite.Group;
+import nl.hogeschoolutrecht.composite.Shape;
 import nl.hogeschoolutrecht.iterator.BrowseHistory;
 import nl.hogeschoolutrecht.iterator.Iterator;
 import nl.hogeschoolutrecht.mediator.ArticleDialogBox;
@@ -51,6 +53,10 @@ public class Main {
 
         System.out.println("Mediator Pattern \n----------------------------");
         getMediatorPattern();
+        System.out.println("----------------------------\n");
+
+        System.out.println("Composite Pattern \n----------------------------");
+        getCompositePattern();
         System.out.println("----------------------------\n");
     }
 
@@ -146,5 +152,24 @@ public class Main {
     {
         ArticleDialogBox dialogBox = new ArticleDialogBox();
         dialogBox.simulateUserInteraction();
+    }
+
+    private static void getCompositePattern()
+    {
+        Group parentGroup = new Group();
+
+        Group childGroup1 = new Group();
+        Group childGroup2 = new Group();
+
+        childGroup1.add(new Shape()); // Square
+        childGroup1.add(new Shape()); // Square
+
+        childGroup2.add(new Shape()); // Circle
+        childGroup2.add(new Shape()); // Circle
+
+        parentGroup.add(childGroup1);
+        parentGroup.add(childGroup2);
+        parentGroup.render();
+        parentGroup.move();
     }
 }
