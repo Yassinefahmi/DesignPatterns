@@ -12,6 +12,9 @@ import nl.hogeschoolutrecht.decorator.CompressedCloudStream;
 import nl.hogeschoolutrecht.decorator.CreditCard;
 import nl.hogeschoolutrecht.decorator.EncryptedCloudStream;
 import nl.hogeschoolutrecht.facade.*;
+import nl.hogeschoolutrecht.flyweight.Point;
+import nl.hogeschoolutrecht.flyweight.PointIconFactory;
+import nl.hogeschoolutrecht.flyweight.PointService;
 import nl.hogeschoolutrecht.iterator.BrowseHistory;
 import nl.hogeschoolutrecht.iterator.Iterator;
 import nl.hogeschoolutrecht.mediator.ArticleDialogBox;
@@ -79,6 +82,10 @@ public class Main {
         System.out.println("Facade Pattern \n----------------------------");
         getFacadePattern();
         System.out.println("----------------------------\n");
+
+        System.out.println("Flyweight Pattern \n----------------------------");
+        getFlyWeightPattern();
+        System.out.println("\n----------------------------\n");
 
     }
 
@@ -211,5 +218,15 @@ public class Main {
     {
         NotificationService notificationService = new NotificationService();
         notificationService.send("Hello World", "127.0.0.1");
+    }
+
+    private static void getFlyWeightPattern()
+    {
+        PointService pointService = new PointService(new PointIconFactory());
+
+        for (Point point : pointService.getPoints())
+        {
+            point.draw();
+        }
     }
 }
