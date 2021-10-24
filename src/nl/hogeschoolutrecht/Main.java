@@ -3,7 +3,6 @@ package nl.hogeschoolutrecht;
 import nl.hogeschoolutrecht.adapter.CaramelFilter;
 import nl.hogeschoolutrecht.adapter.Image;
 import nl.hogeschoolutrecht.adapter.ImageView;
-import nl.hogeschoolutrecht.adapter.VividFilter;
 import nl.hogeschoolutrecht.adapter.thirdParty.Caramel;
 import nl.hogeschoolutrecht.command.editor.*;
 import nl.hogeschoolutrecht.composite.Group;
@@ -12,6 +11,7 @@ import nl.hogeschoolutrecht.decorator.CloudStream;
 import nl.hogeschoolutrecht.decorator.CompressedCloudStream;
 import nl.hogeschoolutrecht.decorator.CreditCard;
 import nl.hogeschoolutrecht.decorator.EncryptedCloudStream;
+import nl.hogeschoolutrecht.facade.*;
 import nl.hogeschoolutrecht.iterator.BrowseHistory;
 import nl.hogeschoolutrecht.iterator.Iterator;
 import nl.hogeschoolutrecht.mediator.ArticleDialogBox;
@@ -75,6 +75,11 @@ public class Main {
         System.out.println("Decorator Pattern \n----------------------------");
         getDecoratorPattern();
         System.out.println("----------------------------\n");
+
+        System.out.println("Facade Pattern \n----------------------------");
+        getFacadePattern();
+        System.out.println("----------------------------\n");
+
     }
 
     private static void getMomentoPattern()
@@ -200,5 +205,11 @@ public class Main {
     {
         CreditCard creditCard = new CreditCard();
         creditCard.store(new EncryptedCloudStream(new CompressedCloudStream(new CloudStream())));
+    }
+
+    private static void getFacadePattern()
+    {
+        NotificationService notificationService = new NotificationService();
+        notificationService.send("Hello World", "127.0.0.1");
     }
 }
