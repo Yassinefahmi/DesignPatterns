@@ -3,6 +3,7 @@ package nl.hogeschoolutrecht;
 import nl.hogeschoolutrecht.command.editor.*;
 import nl.hogeschoolutrecht.iterator.BrowseHistory;
 import nl.hogeschoolutrecht.iterator.Iterator;
+import nl.hogeschoolutrecht.mediator.ArticleDialogBox;
 import nl.hogeschoolutrecht.momento.Editor;
 import nl.hogeschoolutrecht.momento.EditorHistory;
 import nl.hogeschoolutrecht.observer.Chart;
@@ -46,6 +47,10 @@ public class Main {
 
         System.out.println("Observer Pattern \n----------------------------");
         getObserverPattern();
+        System.out.println("----------------------------\n");
+
+        System.out.println("Mediator Pattern \n----------------------------");
+        getMediatorPattern();
         System.out.println("----------------------------\n");
     }
 
@@ -135,5 +140,11 @@ public class Main {
         dataSource.addObserver(chart);
 
         dataSource.setValue(1);
+    }
+
+    private static void getMediatorPattern()
+    {
+        ArticleDialogBox dialogBox = new ArticleDialogBox();
+        dialogBox.simulateUserInteraction();
     }
 }
