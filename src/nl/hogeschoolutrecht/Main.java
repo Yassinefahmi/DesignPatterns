@@ -4,6 +4,10 @@ import nl.hogeschoolutrecht.adapter.CaramelFilter;
 import nl.hogeschoolutrecht.adapter.Image;
 import nl.hogeschoolutrecht.adapter.ImageView;
 import nl.hogeschoolutrecht.adapter.thirdParty.Caramel;
+import nl.hogeschoolutrecht.bridge.AdvancedRemoteControl;
+import nl.hogeschoolutrecht.bridge.RemoteControl;
+import nl.hogeschoolutrecht.bridge.SamsungTV;
+import nl.hogeschoolutrecht.bridge.SonyTV;
 import nl.hogeschoolutrecht.command.editor.*;
 import nl.hogeschoolutrecht.composite.Group;
 import nl.hogeschoolutrecht.composite.Shape;
@@ -86,6 +90,10 @@ public class Main {
         System.out.println("Flyweight Pattern \n----------------------------");
         getFlyWeightPattern();
         System.out.println("\n----------------------------\n");
+
+        System.out.println("Bridge Pattern \n----------------------------");
+        getBridgePattern();
+        System.out.println("----------------------------\n");
 
     }
 
@@ -228,5 +236,14 @@ public class Main {
         {
             point.draw();
         }
+    }
+
+    private static void getBridgePattern()
+    {
+        RemoteControl remoteSonyControl = new AdvancedRemoteControl(new SonyTV());
+        RemoteControl remoteSamsungControl = new AdvancedRemoteControl(new SamsungTV());
+
+        remoteSonyControl.turnOn();
+        remoteSamsungControl.turnOn();
     }
 }
