@@ -11,6 +11,7 @@ import nl.designpattern.bridge.AdvancedRemoteControl;
 import nl.designpattern.bridge.RemoteControl;
 import nl.designpattern.bridge.SamsungTV;
 import nl.designpattern.bridge.SonyTV;
+import nl.designpattern.builder.*;
 import nl.designpattern.command.editor.*;
 import nl.designpattern.composite.Group;
 import nl.designpattern.composite.Shape;
@@ -116,6 +117,10 @@ public class Main {
 
         System.out.println("Abstract Factory Pattern \n----------------------------");
         getAbstractFactoryPattern();
+        System.out.println("----------------------------\n");
+
+        System.out.println("Builder Pattern \n----------------------------");
+        getBuilderPattern();
         System.out.println("----------------------------\n");
     }
 
@@ -303,5 +308,22 @@ public class Main {
 
         ContactForm androidAppForm = new ContactForm();
         androidAppForm.render(new MaterialWidgetFactory());
+    }
+
+    private static void getBuilderPattern()
+    {
+        Presentation presentation = new Presentation();
+
+        presentation.addSlide(new Slide("Slide 1"));
+        presentation.addSlide(new Slide("Slide 2"));
+        presentation.addSlide(new Slide("Slide 3"));
+
+        PdfDocumentBuilder pdfDocumentBuilder = new PdfDocumentBuilder();
+        presentation.export(pdfDocumentBuilder);
+        PdfDocument pdfDocument = pdfDocumentBuilder.getPdfDocument();
+
+        MovieBuilder movieBuilder = new MovieBuilder();
+        presentation.export(movieBuilder);
+        Movie movie = movieBuilder.getMovie();
     }
 }
