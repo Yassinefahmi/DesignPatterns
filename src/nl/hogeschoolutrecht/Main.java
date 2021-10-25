@@ -27,6 +27,9 @@ import nl.hogeschoolutrecht.momento.EditorHistory;
 import nl.hogeschoolutrecht.observer.Chart;
 import nl.hogeschoolutrecht.observer.DataSource;
 import nl.hogeschoolutrecht.observer.Spreadsheet;
+import nl.hogeschoolutrecht.proxy.EbookProxy;
+import nl.hogeschoolutrecht.proxy.Library;
+import nl.hogeschoolutrecht.proxy.RealEbook;
 import nl.hogeschoolutrecht.state.BrushTool;
 import nl.hogeschoolutrecht.state.Canvas;
 import nl.hogeschoolutrecht.state.SelectionTool;
@@ -95,6 +98,9 @@ public class Main {
         getBridgePattern();
         System.out.println("----------------------------\n");
 
+        System.out.println("Proxy Pattern \n----------------------------");
+        getProxyPattern();
+        System.out.println("----------------------------\n");
     }
 
     private static void getMomentoPattern()
@@ -245,5 +251,18 @@ public class Main {
 
         remoteSonyControl.turnOn();
         remoteSamsungControl.turnOn();
+    }
+
+    private static void getProxyPattern()
+    {
+        Library library = new Library();
+        String[] fileNames = { "book1", "book2", "book3" };
+
+        for (String fileName : fileNames)
+        {
+            library.add(new EbookProxy(fileName));
+        }
+
+        library.openEbook("book1");
     }
 }
