@@ -29,6 +29,7 @@ import nl.designpattern.observer.DataSource;
 import nl.designpattern.observer.Spreadsheet;
 import nl.designpattern.proxy.EbookProxy;
 import nl.designpattern.proxy.Library;
+import nl.designpattern.singleton.ConfigManager;
 import nl.designpattern.state.BrushTool;
 import nl.designpattern.state.Canvas;
 import nl.designpattern.state.SelectionTool;
@@ -99,6 +100,10 @@ public class Main {
 
         System.out.println("Proxy Pattern \n----------------------------");
         getProxyPattern();
+        System.out.println("----------------------------\n");
+
+        System.out.println("Singleton Pattern \n----------------------------");
+        getSingletonPattern();
         System.out.println("----------------------------\n");
     }
 
@@ -263,5 +268,14 @@ public class Main {
         }
 
         library.openEbook("book1");
+    }
+
+    private static void getSingletonPattern()
+    {
+        ConfigManager manager1 = ConfigManager.getConfigManager();
+        ConfigManager manager2 = ConfigManager.getConfigManager();
+
+        manager1.set("name", "yassine");
+        System.out.println(manager2.get("name"));
     }
 }
