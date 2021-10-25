@@ -16,6 +16,7 @@ import nl.designpattern.decorator.CompressedCloudStream;
 import nl.designpattern.decorator.CreditCard;
 import nl.designpattern.decorator.EncryptedCloudStream;
 import nl.designpattern.facade.*;
+import nl.designpattern.factory.ProductsController;
 import nl.designpattern.flyweight.Point;
 import nl.designpattern.flyweight.PointIconFactory;
 import nl.designpattern.flyweight.PointService;
@@ -104,6 +105,10 @@ public class Main {
 
         System.out.println("Singleton Pattern \n----------------------------");
         getSingletonPattern();
+        System.out.println("----------------------------\n");
+
+        System.out.println("Factory Pattern \n----------------------------");
+        getFactoryPattern();
         System.out.println("----------------------------\n");
     }
 
@@ -277,5 +282,10 @@ public class Main {
 
         manager1.set("name", "yassine");
         System.out.println(manager2.get("name"));
+    }
+
+    private static void getFactoryPattern()
+    {
+        new ProductsController().listProducts();
     }
 }
