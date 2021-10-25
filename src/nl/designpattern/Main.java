@@ -1,5 +1,8 @@
 package nl.designpattern;
 
+import nl.designpattern.abstractFactory.app.ContactForm;
+import nl.designpattern.abstractFactory.bootstrap.BootstrapWidgetFactory;
+import nl.designpattern.abstractFactory.material.MaterialWidgetFactory;
 import nl.designpattern.adapter.CaramelFilter;
 import nl.designpattern.adapter.Image;
 import nl.designpattern.adapter.ImageView;
@@ -109,6 +112,10 @@ public class Main {
 
         System.out.println("Factory Pattern \n----------------------------");
         getFactoryPattern();
+        System.out.println("----------------------------\n");
+
+        System.out.println("Abstract Factory Pattern \n----------------------------");
+        getAbstractFactoryPattern();
         System.out.println("----------------------------\n");
     }
 
@@ -287,5 +294,14 @@ public class Main {
     private static void getFactoryPattern()
     {
         new ProductsController().listProducts();
+    }
+
+    private static void getAbstractFactoryPattern()
+    {
+        ContactForm webForm = new ContactForm();
+        webForm.render(new BootstrapWidgetFactory());
+
+        ContactForm androidAppForm = new ContactForm();
+        androidAppForm.render(new MaterialWidgetFactory());
     }
 }
